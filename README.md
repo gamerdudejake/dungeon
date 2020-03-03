@@ -1,8 +1,6 @@
 # dungeon
 Simple text-based dungeon crawler.
 
-Please note, I still have to add the Sorceress and the other Monsters. This will be done later tonight.
-
 Methods you should know about:
   * DungeonCharacter.modifyHitPoints() - Accepts a positive or negative int.
                                           Make sure to use this for all damage/healing.
