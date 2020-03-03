@@ -31,14 +31,14 @@ public abstract class Monster extends DungeonCharacter
 	public void heal() throws Exception 
 	{
 		boolean canHeal;
-		int healPoints;
+		int hitPointChange;
 
 		canHeal = (Math.random() <= chanceToHeal) && (hitPoints > 0);
 
 		if (canHeal)
 		{
-			healPoints = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
-			super.modifyHitPoints(healPoints);
+			hitPointChange = (int)(Math.random() * (maxHeal - minHeal + 1)) + minHeal;
+			super.modifyHitPoints(hitPointChange);
 		}
 
 

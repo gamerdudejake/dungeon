@@ -16,271 +16,338 @@ public class ViewController
 
 	public ViewController() {}
 
-	public void setHero(Hero theHero) {
+	public void setHero(Hero theHero) 
+	{
 		hero = theHero;
 	}
 
-	public void setMonster(Monster theMonster) {
+	public void setMonster(Monster theMonster) 
+	{
 		monster = theMonster;
 	}
 
-  // Initializes (or resets) sprite Scanners
-  public void setSprites() throws FileNotFoundException {
-    try {
-      heroSprite = new Scanner(hero.getSprite());
-      monsterSprite = new Scanner(monster.getSprite());
+	// Initializes (or resets) sprite Scanners
+	public void setSprites() throws FileNotFoundException 
+	{
+		try {
+			heroSprite = new Scanner(hero.getSprite());
+			monsterSprite = new Scanner(monster.getSprite());
 
-        if (hero.getHeight() >= monster.getHeight()) {
-    		heightDiff = hero.getHeight() - monster.getHeight();
-      		heroTaller = true;
-    	} else {
-      		heightDiff = monster.getHeight() - hero.getHeight();
-     		heroTaller = false;
-    	}
-    } catch (FileNotFoundException e) {
-      System.out.println("Error loading sprite: " + e);
-    }
-  }
+		        if (hero.getHeight() >= monster.getHeight()) {
+		    		heightDiff = hero.getHeight() - monster.getHeight();
+		      		heroTaller = true;
+		    	} else {
+		      		heightDiff = monster.getHeight() - hero.getHeight();
+		     		heroTaller = false;
+		    	}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error loading sprite: " + e);
+		}
+	}
 
-  public void createView() throws Exception {
-    drawHero();
-  }
+	public void createView() throws Exception 
+	{
+		drawHero();
+	}
 
-  public void updateView(DungeonCharacter updatedCharacter, String action) {
-    if (updatedCharacter == hero) {
-      drawHero(action);
-    } else {
-      drawMonster(action);
-    }
-  }
+	public void updateView(DungeonCharacter updatedCharacter, String action) 
+	{
+		if (updatedCharacter == hero) 
+		{
+			drawHero(action);
+		} 
+		else 
+		{
+			drawMonster(action);
+		}
+	}
 
-  public void updateView(DungeonCharacter updatedCharacter, int hitPointChange) throws Exception {
-    if (updatedCharacter == hero) {
-      drawHero(hitPointChange);
-    } else {
-      drawMonster(hitPointChange);
-    }
-  }
+	public void updateView(DungeonCharacter updatedCharacter, int hitPointChange) throws Exception 
+	{
+		if (updatedCharacter == hero) 
+		{
+			drawHero(hitPointChange);
+		} 
+		else 
+		{
+			drawMonster(hitPointChange);
+		}
+	}
 
-  private void drawHero() {
-    try {
-      setSprites();
-    } catch (FileNotFoundException e) {
-      System.out.println("Error loading sprite: " + e);
-    }
+	private void drawHero() 
+	{
+		try {
+			setSprites();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error loading sprite: " + e);
+		}
 
-    clearScreen();
-    System.out.println();
-    System.out.println();
-    System.out.println();
+		clearScreen();
+		System.out.println();
+		System.out.println();
+		System.out.println();
 
-    int heightDifference = heightDiff;
+		int heightDifference = heightDiff;
 
-    while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) {
-      if (heightDifference > 0) {
-        if (heroTaller) {
-          System.out.println(heroSprite.nextLine());
-        } else {
-          System.out.println("            " + monsterSprite.nextLine());
-        }
+		while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) 
+		{
+			if (heightDifference > 0) 
+			{
+				if (heroTaller) 
+				{
+					System.out.println(heroSprite.nextLine());
+				} 
+				else 
+				{
+					System.out.println("            " + monsterSprite.nextLine());
+				}
 
-        heightDifference--;
-      } else {
-        String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
-        System.out.println(line);
-      }
-    }
+				heightDifference--;
+			} 
+			else 
+			{
+				String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
+				System.out.println(line);
+			}
+		}
 
-    System.out.println("----------------");
-	System.out.println(hero.getName() + "      " + monster.getName());
-    System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns());
-    System.out.println();
-    for (String choice : hero.getActionList()) {
-      System.out.println(choice);
-    }
-    System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
-    System.out.println();
-  }
+		System.out.println("----------------");
+		System.out.println(hero.getName() + "      " + monster.getName());
+		System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
+		System.out.println("Turns: " + hero.getTurns());
+		System.out.println();
 
-  private void drawHero(String action) {
-    try {
-      setSprites();
-    } catch (FileNotFoundException e) {
-      System.out.println("Error loading sprite: " + e);
-    }
+		for (String choice : hero.getActionList()) 
+		{
+			System.out.println(choice);
+		}
 
-    clearScreen();
-    System.out.println();
-    System.out.println(" " + action);
-    System.out.println();
+		System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
+		System.out.println();
+	}
 
-    int heightDifference = heightDiff;
+	private void drawHero(String action) 
+	{
+		try {
+			setSprites();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error loading sprite: " + e);
+		}
 
-    while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) {
-      if (heightDifference > 0) {
-        if (heroTaller) {
-          System.out.println(heroSprite.nextLine());
-        } else {
-          System.out.println("            " + monsterSprite.nextLine());
-        }
+		clearScreen();
+		System.out.println();
+		System.out.println(" " + action);
+		System.out.println();
 
-        heightDifference--;
-      } else {
-        String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
-        System.out.println(line);
-      }
-    }
+		int heightDifference = heightDiff;
 
-    System.out.println("----------------");
-	System.out.println(hero.getName() + "      " + monster.getName());
-    System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns());
-    System.out.println();
-    for (String choice : hero.getActionList()) {
-      System.out.println(choice);
-    }
-    System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
-    System.out.println();
-  }
+		while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) 
+		{
+			if (heightDifference > 0) 
+			{
+				if (heroTaller) 
+				{
+					System.out.println(heroSprite.nextLine());
+				} else {
+					System.out.println("            " + monsterSprite.nextLine());
+				}
 
-  private void drawHero(int hitPointChange) {
-    try {
-      setSprites();
-    } catch (FileNotFoundException e) {
-      System.out.println("Error loading sprite: " + e);
-    }
+				heightDifference--;
+			} 
+			else 
+			{
+				String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
+				System.out.println(line);
+			}
+		}
 
-    clearScreen();
-    System.out.println();
-    System.out.println(" " + Integer.toString(hitPointChange));
-    System.out.println();
+		System.out.println("----------------");
+		System.out.println(hero.getName() + "      " + monster.getName());
+		System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
+		System.out.println("Turns: " + hero.getTurns());
+		System.out.println();
 
-    int heightDifference = heightDiff;
+		for (String choice : hero.getActionList()) 
+		{
+			System.out.println(choice);
+		}
 
-    while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) {
-      if (heightDifference > 0) {
-        if (heroTaller) {
-          System.out.println(heroSprite.nextLine());
-        } else {
-          System.out.println("            " + monsterSprite.nextLine());
-        }
+		System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
+		System.out.println();
+	}
 
-        heightDifference--;
-      } else {
-        String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
-        System.out.println(line);
-      }
-    }
+	private void drawHero(int hitPointChange) 
+	{
+		try {
+			setSprites();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error loading sprite: " + e);
+		}
 
-    System.out.println("----------------");
-	System.out.println(hero.getName() + "      " + monster.getName());
-    System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns());
-    System.out.println();
-    for (String choice : hero.getActionList()) {
-      System.out.println(choice);
-    }
-    System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
-    System.out.println();
-  }
+		clearScreen();
+		System.out.println();
+		System.out.println(" " + Integer.toString(hitPointChange));
+		System.out.println();
 
-  private void drawMonster(String action) {
-    String buffer = "";
+		int heightDifference = heightDiff;
 
-    for (int i = 16 - (action.length() + 1); i > 0; i--) {
-      buffer += " ";
-    }
+		while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) 
+		{
+			if (heightDifference > 0) 
+			{
+				if (heroTaller) 
+				{
+					System.out.println(heroSprite.nextLine());
+				} 
+				else 
+				{
+					System.out.println("            " + monsterSprite.nextLine());
+				}
 
-    try {
-      setSprites();
-    } catch (FileNotFoundException e) {
-      System.out.println("Error loading sprite: " + e);
-    }
+				heightDifference--;
+			} 
+			else 
+			{
+				String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
+				System.out.println(line);
+			}
+		}
 
-    clearScreen();
-    System.out.println();
-    System.out.println(buffer + action + " ");
-    System.out.println();
+		System.out.println("----------------");
+		System.out.println(hero.getName() + "      " + monster.getName());
+		System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
+		System.out.println("Turns: " + hero.getTurns());
+		System.out.println();
 
-    int heightDifference = heightDiff;
+		for (String choice : hero.getActionList()) 
+		{
+			System.out.println(choice);
+		}
 
-    while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) {
-      if (heightDifference > 0) {
-        if (heroTaller) {
-          System.out.println(heroSprite.nextLine());
-        } else {
-          System.out.println("            " + monsterSprite.nextLine());
-        }
+		System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
+		System.out.println();
+	}
 
-        heightDifference--;
-      } else {
-        String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
-        System.out.println(line);
-      }
-    }
+	private void drawMonster(String action) 
+	{
+		String buffer = "";
 
-    System.out.println("----------------");
-	System.out.println(hero.getName() + "      " + monster.getName());
-    System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns());
-    System.out.println();
-    for (String choice : hero.getActionList()) {
-      System.out.println(choice);
-    }
-    System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
-    System.out.println();
-  }
+		for (int i = 16 - (action.length() + 1); i > 0; i--) 
+		{
+			buffer += " ";
+		}
 
-  private void drawMonster(int hitPointChange) throws Exception {
-    String buffer = "";
+		try {
+			setSprites();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error loading sprite: " + e);
+		}
 
-    for (int i = 16 - (Integer.toString(hitPointChange).length() + 1); i > 0; i--) {
-      buffer += " ";
-    }
+		clearScreen();
+		System.out.println();
+		System.out.println(buffer + action + " ");
+		System.out.println();
 
-    try {
-      setSprites();
-    } catch (FileNotFoundException e) {
-      System.out.println("Error loading sprite: " + e);
-    }
+		int heightDifference = heightDiff;
 
-    clearScreen();
-    System.out.println();
-    System.out.println(buffer + Integer.toString(hitPointChange) + " ");
-    System.out.println();
+		while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) 
+		{
+			if (heightDifference > 0) 
+			{
+				if (heroTaller) 
+				{
+					System.out.println(heroSprite.nextLine());
+				} 
+				else 
+				{
+					System.out.println("            " + monsterSprite.nextLine());
+				}
 
-    int heightDifference = heightDiff;
+				heightDifference--;
+			} 
+			else 
+			{
+				String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
+				System.out.println(line);
+			}
+		}
 
-    while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) {
-      if (heightDifference > 0) {
-        if (heroTaller) {
-          System.out.println(heroSprite.nextLine());
-        } else {
-          System.out.println("            " + monsterSprite.nextLine());
-        }
+		System.out.println("----------------");
+		System.out.println(hero.getName() + "      " + monster.getName());
+		System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
+		System.out.println("Turns: " + hero.getTurns());
+		System.out.println();
 
-        heightDifference--;
-      } else {
-        String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
-        System.out.println(line);
-      }
-    }
+		for (String choice : hero.getActionList()) 
+		{
+			System.out.println(choice);
+		}
 
-    System.out.println("----------------");
-	System.out.println(hero.getName() + "      " + monster.getName());
-    System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns());
-    System.out.println();
-    for (String choice : hero.getActionList()) {
-      System.out.println(choice);
-    }
-    System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
-    System.out.println();
-  }
+		System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
+		System.out.println();
+	}
 
-  public void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
-  }
+	private void drawMonster(int hitPointChange) throws Exception 
+	{
+		String buffer = "";
+
+		for (int i = 16 - (Integer.toString(hitPointChange).length() + 1); i > 0; i--) 
+		{
+			buffer += " ";
+		}
+
+		try {
+			setSprites();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error loading sprite: " + e);
+		}
+
+		clearScreen();
+		System.out.println();
+		System.out.println(buffer + Integer.toString(hitPointChange) + " ");
+		System.out.println();
+
+		int heightDifference = heightDiff;
+
+		while (heroSprite.hasNextLine() && monsterSprite.hasNextLine()) 
+		{
+			if (heightDifference > 0) 
+			{
+				if (heroTaller) 
+				{
+					System.out.println(heroSprite.nextLine());
+				} 
+				else 
+				{
+					System.out.println("            " + monsterSprite.nextLine());
+				}
+
+				heightDifference--;
+			} 
+			else 
+			{
+				String line = heroSprite.nextLine() + "        " + monsterSprite.nextLine();
+				System.out.println(line);
+			}
+		}
+
+		System.out.println("----------------");
+		System.out.println(hero.getName() + "      " + monster.getName());
+		System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
+		System.out.println("Turns: " + hero.getTurns());
+		System.out.println();
+
+		for (String choice : hero.getActionList()) 
+		{
+			System.out.println(choice);
+		}
+
+		System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
+		System.out.println();
+	}
+
+	public void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
 }
