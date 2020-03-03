@@ -2,11 +2,10 @@ package dungeon;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
-import java.io.FileNotFoundException;
 
 public class Thief extends Hero
 {
-	public Thief(ViewController controller) throws FileNotFoundException 
+	public Thief(ViewController controller) 
 	{
 		super("Thief", 75, 6, .8, 20, 40, .5, 4, 
 		      new File("sprites/ThiefSprite.txt"), 
@@ -20,7 +19,7 @@ public class Thief extends Hero
 		double surprise = Math.random();
 		if (surprise <= .4)
 		{
-//			numTurns++;
+			turns++;
 			controller.updateView(this, "Surprise!");
 			TimeUnit.SECONDS.sleep(1);
 			attack(opponent);

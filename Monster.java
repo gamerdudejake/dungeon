@@ -1,6 +1,7 @@
 package dungeon;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Monster extends DungeonCharacter
 {
@@ -46,6 +47,7 @@ public abstract class Monster extends DungeonCharacter
 	public void modifyHitPoints(int hitPointChange) throws Exception 
 	{
 		super.modifyHitPoints(hitPointChange);
+		TimeUnit.SECONDS.sleep(1);
 		heal();
 	}
 }

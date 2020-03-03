@@ -94,7 +94,7 @@ public class ViewController
     System.out.println("----------------");
 	System.out.println(hero.getName() + "      " + monster.getName());
     System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns(monster));
+    System.out.println("Turns: " + hero.getTurns());
     System.out.println();
     for (String choice : hero.getActionList()) {
       System.out.println(choice);
@@ -135,7 +135,7 @@ public class ViewController
     System.out.println("----------------");
 	System.out.println(hero.getName() + "      " + monster.getName());
     System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns(monster));
+    System.out.println("Turns: " + hero.getTurns());
     System.out.println();
     for (String choice : hero.getActionList()) {
       System.out.println(choice);
@@ -176,7 +176,7 @@ public class ViewController
     System.out.println("----------------");
 	System.out.println(hero.getName() + "      " + monster.getName());
     System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns(monster));
+    System.out.println("Turns: " + hero.getTurns());
     System.out.println();
     for (String choice : hero.getActionList()) {
       System.out.println(choice);
@@ -223,7 +223,7 @@ public class ViewController
     System.out.println("----------------");
 	System.out.println(hero.getName() + "      " + monster.getName());
     System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns(monster));
+    System.out.println("Turns: " + hero.getTurns());
     System.out.println();
     for (String choice : hero.getActionList()) {
       System.out.println(choice);
@@ -270,7 +270,7 @@ public class ViewController
     System.out.println("----------------");
 	System.out.println(hero.getName() + "      " + monster.getName());
     System.out.println("HP: " + hero.getHitPoints() + "      " + "HP: " + monster.getHitPoints());
-    System.out.println("Turns: " + hero.getTurns(monster));
+    System.out.println("Turns: " + hero.getTurns());
     System.out.println();
     for (String choice : hero.getActionList()) {
       System.out.println(choice);

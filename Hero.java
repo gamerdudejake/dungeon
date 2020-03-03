@@ -6,6 +6,7 @@ public abstract class Hero extends DungeonCharacter
 {
 	protected double chanceToBlock;
 	protected String[] actionList;
+	protected int turns;
 
 	public Hero(String name, 
                     int hitPoints, 
@@ -59,20 +60,27 @@ public abstract class Hero extends DungeonCharacter
 		return actionList;
 	}
 
-	public int getTurns(Monster opponent)
+	public void setTurns(Monster opponent)
 	{
-		int turns = attackSpeed/opponent.getAttackSpeed();
+		int numTurns = attackSpeed/opponent.getAttackSpeed();
 
-		if (turns == 0)
+		if (numTurns == 0)
 		{
-			turns++;
+			numTurns++;
 		}
 
+		turns = numTurns;
+	}
+
+	public int getTurns()
+	{
 		return turns;
 	}
 
 	public int chooseAction(Monster opponent)
 	{
+		turns--;
+
 		String actionChoice = Integer.toString(Keyboard.readInt());
 
 		for (String choice : actionList) 

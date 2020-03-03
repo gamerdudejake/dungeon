@@ -37,7 +37,7 @@ public class Dungeon
 		{
 			case 1: return new Warrior(controller);
 
-			case 2: return new Thief(controller);
+			case 2: return new Sorceress(controller);
 
 			case 3: return new Thief(controller);
 
@@ -56,15 +56,14 @@ public class Dungeon
 
 		switch(choice)
 		{
-// Ogre
-			case 1: return new Skeleton(controller);
-// Gremlin
-			case 2: return new Skeleton(controller);
+
+			case 1: return new Ogre(controller);
+
+			case 2: return new Gremlin(controller);
 
 			case 3: return new Skeleton(controller);
 
-			default: System.out.println("invalid choice, returning Skeleton");
-				     return new Skeleton(controller);
+			default: return new Skeleton(controller);
 		}
 	}
 
@@ -130,6 +129,7 @@ public class Dungeon
 	{
                 int quitChoice = theHero.getActionList().length + 1;
 
+		theHero.setTurns(theMonster);
 		controller.setHero(theHero);
 		controller.setMonster(theMonster);
 		controller.setSprites();
@@ -138,7 +138,7 @@ public class Dungeon
                 battle:
 		while (theHero.isAlive() && theMonster.isAlive())
 		{
-			for (int i = theHero.getTurns(theMonster); i > 0; i--) 
+			while (theHero.getTurns() != 0 && theHero.isAlive() && theMonster.isAlive()) 
 			{
 				int choice = theHero.chooseAction(theMonster);
 
@@ -157,6 +157,9 @@ public class Dungeon
 				}
 			}
 
+			theHero.setTurns(theMonster);
+			TimeUnit.SECONDS.sleep(1);
+
 			if (theMonster.isAlive())
 			{
 				theMonster.attack(theHero);
@@ -165,12 +168,16 @@ public class Dungeon
 			}
 		}
 
-		if (!theMonster.isAlive())
-		    System.out.println(theHero.getName() + " was victorious!");
-		else if (!theHero.isAlive())
-			System.out.println(theHero.getName() + " was defeated :-(");
-		else //both are alive so user quit the game
-			System.out.println("Quitters never win ;-)");
+		controller.clearScreen();
 
+		if (!theMonster.isAlive())
+			System.out.println(theHero.getName() + " was victorious!");
+		else if (!theHero.isAlive())
+			System.out.println(theHero.getName() + " was defeated!");
+		else //both are alive so user quit the game
+			System.out.println("Quitters never win.");
+
+		TimeUnit.SECONDS.sleep(1);
+		TimeUnit.SECONDS.sleep(1);
 	}
 }

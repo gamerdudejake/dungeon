@@ -2,11 +2,10 @@ package dungeon;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
-import java.io.FileNotFoundException;
 
 public class Warrior extends Hero
 {
-	public Warrior(ViewController controller) throws FileNotFoundException 
+	public Warrior(ViewController controller) 
 	{
 		super("Warrior", 125, 4, .8, 35, 60, .2, 4, 
 		      new File("sprites/WarriorSprite.txt"), 
