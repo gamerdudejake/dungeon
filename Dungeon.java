@@ -32,19 +32,7 @@ public class Dungeon
 				   "2. Sorceress\n" +
 				   "3. Thief");
 		choice = Keyboard.readInt();
-
-		switch(choice)
-		{
-			case 1: return new Warrior(controller);
-
-			case 2: return new Sorceress(controller);
-
-			case 3: return new Thief(controller);
-
-			default:
-				System.out.println("invalid choice, returning Thief");
-				return new Thief(controller);
-		}
+		return new HeroFactory().makeHero(choice, controller);
 	}
 
 	public static Monster generateMonster(ViewController controller) 
