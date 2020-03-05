@@ -1,6 +1,7 @@
 package dungeon;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -45,6 +46,35 @@ public class ViewController
 	}
 
 	public void createView() throws Exception 
+	{
+		drawHero();
+	}
+
+	public void updateView(DungeonCharacter updatedCharacter, String action) 
+	{
+		if (updatedCharacter == hero) 
+		{
+			drawHero(action);
+		} 
+		else 
+		{
+			drawMonster(action);
+		}
+	}
+
+	public void updateView(DungeonCharacter updatedCharacter, int hitPointChange) throws Exception 
+	{
+		if (updatedCharacter == hero) 
+		{
+			drawHero(hitPointChange);
+		} 
+		else 
+		{
+			drawMonster(hitPointChange);
+		}
+	}
+
+	private void drawHero() 
 	{
 		try {
 			setSprites();
@@ -94,30 +124,6 @@ public class ViewController
 
 		System.out.println(Integer.toString(hero.getActionList().length + 1) + ". Quit");
 		System.out.println();
-	}
-
-	public void updateView(DungeonCharacter updatedCharacter, String action) 
-	{
-		if (updatedCharacter == hero) 
-		{
-			drawHero(action);
-		} 
-		else 
-		{
-			drawMonster(action);
-		}
-	}
-
-	public void updateView(DungeonCharacter updatedCharacter, int hitPointChange) throws Exception 
-	{
-		if (updatedCharacter == hero) 
-		{
-			drawHero(hitPointChange);
-		} 
-		else 
-		{
-			drawMonster(hitPointChange);
-		}
 	}
 
 	private void drawHero(String action) 

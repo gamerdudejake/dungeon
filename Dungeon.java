@@ -140,6 +140,7 @@ public class Dungeon
 				else 
 				{
 	                        	doAction(theHero, theMonster, choice);
+					TimeUnit.SECONDS.sleep(1);
 					controller.createView();
 				}
 			}
