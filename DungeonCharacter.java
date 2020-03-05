@@ -80,6 +80,7 @@ public abstract class DungeonCharacter
 			controller.updateView(this, "Heal!");
 			TimeUnit.SECONDS.sleep(1);
 			controller.updateView(this, hitPointChange);
+			TimeUnit.SECONDS.sleep(1);
 		}
 	}
 
@@ -103,6 +104,7 @@ public abstract class DungeonCharacter
 		else
 		{
 			controller.updateView(opponent, "Miss!");
+			TimeUnit.SECONDS.sleep(1);
 		}
 	}
 }
