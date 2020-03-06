@@ -3,12 +3,10 @@ public class MonsterFactory {
 
 	
 	
-	public static Monster generateMonster(ViewController controller) 
+	public static Monster createMonster(ViewController controller, int choice) 
 			throws Exception  
 			{
-				int choice;
-
-				choice = (int)(Math.random() * 3) + 1;
+				
 
 				switch(choice)
 				{
@@ -24,26 +22,11 @@ public class MonsterFactory {
 			}
 	
 	
-		public static Monster randomMonster(ViewController controller)
+		public static Monster createRandomMonster(ViewController controller)
 		{
 			Random random = new Random();
 			int ran = random.nextInt(3);
-			if(ran==0)
-			{
-				return new Ogre(controller);
-			}
-			else if(ran==1)
-			{
-				return new Gremlin(controller);
-
-			}
-			else if(ran==2)
-			{
-				return new Skeleton(controller);
-			}
-			else
-			{
-				return new Skeleton(controller);
-			}
+			Monster newMonster = createMonster(controller, ran);
+			return newMonster;
 		}
 }
